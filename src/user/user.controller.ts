@@ -3,8 +3,10 @@ import { AuthGuard } from 'src/gurads/auth.guard';
 import { UpdateProfileDto } from './dtos/updateProfile.dto';
 import { UserService } from './user.service';
 import { ChangePasswordDto } from './dtos/ChangePassword.dto';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 @Controller('profile')
+@ApiBearerAuth('access-token')
 @UseGuards(AuthGuard)
 export class UserController {
   constructor(private readonly userService: UserService) {}
