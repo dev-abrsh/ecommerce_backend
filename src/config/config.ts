@@ -6,5 +6,6 @@ export default () => ({
     },
     jwt: {
         SECRET: process.env.JWT_SECRET
-    }
+    },
+    frontendUrl: process.env.FRONTEND_URL
 })
