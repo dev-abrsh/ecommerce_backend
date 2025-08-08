@@ -8,7 +8,7 @@ import {
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { SignupDto } from './dtos/signup.dto';
-import { ForgotPasswordDTO, LoginDto, VerifyEmailDto } from './dtos/login.dto';
+import { ForgotPasswordDTO, LoginDto, ResetPasswordDto, VerifyEmailDto } from './dtos/login.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -31,13 +31,10 @@ export class AuthController {
   }
   // post Reset Password
   @Post('reset-password')
-  async resetPassword(
-    @Query('token') token: string,
-    @Body('password') password: string,
-  ) {
+  async resetPassword(@Body() dto: ResetPasswordDto) {
+    const { token, password } = dto;
     return this.authService.resetPassword(token, password);
   }
-
   // post Verify Email
   @Post('verify-email')
   async verifyEmail(@Body() VerifyData: VerifyEmailDto) {
